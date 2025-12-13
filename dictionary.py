@@ -61,7 +61,9 @@ async def getDefinition(word: str) -> str:
 
 def main():
     # Initialize and run the server
-    mcp.run(transport="sse")
+    import uvicorn
+    uvicorn.run(mcp.get_asgi_app(, host="0.0.0.0", port=PORT))
+
 
 
 if __name__ == "__main__":
