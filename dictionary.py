@@ -6,7 +6,6 @@ from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 api_key = os.getenv("MERRIAM_API")
-PORT = int(os.environ.get("PORT", 4000))
 
 mcp = FastMCP("dictionary")
 
@@ -60,7 +59,7 @@ async def getDefinition(word: str) -> str:
 
 
 def main():
-    mcp.run(host="0.0.0.0", port=PORT)
+    mcp.run(transport="stdio")
 
 
 if __name__ == "__main__":
