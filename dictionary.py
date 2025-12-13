@@ -18,9 +18,7 @@ async def make_merriam_request(word: str) -> list | None:
 
     async with httpx.AsyncClient(follow_redirects=True) as client:
         try:
-            response = await client.get(
-                url, headers=headers, timeout=30.0
-            )
+            response = await client.get(url, headers=headers, timeout=30.0)
             response.raise_for_status()
             return response.json()
         except Exception:
@@ -43,8 +41,8 @@ def format_definition(data: list | None) -> str:
     result += f"Part of speech: {part_of_speech}\n"
     result += "Definitions:\n"
     for i, definition in enumerate(
-        definitions, 1
-    ):  # counting variables without incrementing anything
+            definitions,
+            1):  # counting variables without incrementing anything
         result += f" {i}. {definition}\n"  # output definitions one by one
 
     return result
