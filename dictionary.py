@@ -6,9 +6,8 @@ from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 api_key = os.getenv("MERRIAM_API")
-PORT = os.environ.get("PORT", 10000)
 
-mcp = FastMCP("dictionary", host="0.0.0.0", port=PORT)
+mcp = FastMCP("dictionary")
 
 
 async def make_merriam_request(word: str) -> list | None:
@@ -19,7 +18,7 @@ async def make_merriam_request(word: str) -> list | None:
     async with httpx.AsyncClient(follow_redirects=True) as client:
         try:
             response = await client.get(
-                url, params={"key": api_key}, headers=headers, timeout=30.0
+                url, headers=headers, timeout=30.0
             )
             response.raise_for_status()
             return response.json()
@@ -61,7 +60,7 @@ async def getDefinition(word: str) -> str:
 
 def main():
     # Initialize and run the server
-    mcp.run(transport="stdio")
+    mcp.run(transport="sse")
 
 
 if __name__ == "__main__":
