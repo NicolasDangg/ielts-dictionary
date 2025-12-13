@@ -6,6 +6,7 @@ from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 api_key = os.getenv("MERRIAM_API")
+PORT = int(os.environ.get("PORT", 4000))
 
 mcp = FastMCP("dictionary")
 
