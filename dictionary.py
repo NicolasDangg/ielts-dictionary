@@ -6,8 +6,9 @@ from mcp.server.fastmcp import FastMCP
 
 load_dotenv()
 api_key = os.getenv("MERRIAM_API")
+PORT = int(os.environ.get("PORT", 8000))
 
-mcp = FastMCP("dictionary")
+mcp = FastMCP("dictionary", host="0.0.0.0", port=PORT)
 
 
 async def make_merriam_request(word: str) -> list | None:
@@ -59,7 +60,7 @@ async def getDefinition(word: str) -> str:
 
 
 def main():
-    mcp.run(transport="stdio")
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":
