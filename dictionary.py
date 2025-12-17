@@ -104,6 +104,7 @@ async def getDefinition(word: str) -> str:
         return "Error: Could not fetch definition"
     return format_definition(data)
 
+@mcp.tools()
 async def getDeals():
     """List game deals below $10 in VND"""
     list_of_deals()
