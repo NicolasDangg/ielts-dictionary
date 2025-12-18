@@ -134,12 +134,12 @@ async def getDefinition(word: str) -> str:
 @mcp.tool()
 async def getDeals():
     """List game deals below $10 in VND"""
-    list_of_deals()
+    return list_of_deals()
 
 @mcp.tool()
 async def getFreeGames(number: int):
     """Free games sorted by name and platform"""
-    freeGames(number)
+    return freeGames(number)
 
 def main():
     mcp.run(transport="streamable-http")
