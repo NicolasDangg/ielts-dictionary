@@ -51,3 +51,7 @@ python main.py
 ```
 
 This will start the FastMCP server, and you can now access the tools through the provided interface.
+
+## API Attribution
+
+The `getDeals` and `freeGames` functions are powered by the [CheapShark API](https://apidocs.cheapshark.com/).
