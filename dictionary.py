@@ -95,6 +95,7 @@ def list_of_deals():
         result += f"On Sale: {'Yes' if sale == '1' else 'No'}\n"
         result += f"Steam Rating: {steamRatingText} ({steamRatingPercent}%)\n"
         result += "-----------------------------\n"
+
         return result
 
 def freeGames(number: int):
@@ -102,6 +103,7 @@ def freeGames(number: int):
     games_r = requests.request("GET", games_u)
     games_o = games_r.json()
 
+    result = ""
 
     for i in range(0, number):
         entry = games_o[i]
@@ -112,14 +114,14 @@ def freeGames(number: int):
         publisher = entry.get("publisher")
         release = entry.get("release_date")
 
-        result = f"Game name: {gameName}\n"
+        result += f"Game name: {gameName}\n"
         result += f"Genre: {genre}\n"
         result += f"Platform(s): {platform}\n"
         result += f"Publisher: {publisher}\n"
         result += f"Release date: {release}\n"
         result += "------------------\n"
 
-        return result
+    return result
 
 @mcp.tool()
 async def getDefinition(word: str) -> str:
@@ -135,7 +137,7 @@ async def getDeals():
     list_of_deals()
 
 @mcp.tool()
-async def getFreeGames(number):
+async def getFreeGames(number: int):
     """Free games sorted by name and platform"""
     freeGames(number)
 
