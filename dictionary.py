@@ -73,6 +73,7 @@ def list_of_deals():
 
     ##print(deals_output)
 
+    all_deals = ""
     for i in range(0, len(deals_o)):
         entry = deals_o[i]
         gameName = entry.get("title", "Unknown")
@@ -95,8 +96,9 @@ def list_of_deals():
         result += f"On Sale: {'Yes' if sale == '1' else 'No'}\n"
         result += f"Steam Rating: {steamRatingText} ({steamRatingPercent}%)\n"
         result += "-----------------------------\n"
+        all_deals += result
 
-        return result
+    return all_deals
 
 def freeGames(number: int):
     games_u = "https://www.freetogame.com/api/games"
