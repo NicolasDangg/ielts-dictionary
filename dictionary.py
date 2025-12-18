@@ -12,6 +12,8 @@ PORT = int(os.environ.get("PORT", 8000))
 
 mcp = FastMCP("dictionary", host="0.0.0.0", port=PORT)
 
+currency_u = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json"
+
 
 async def make_merriam_request(word: str) -> list | None:
     """Make a request to the Merriam-Webster Dictionary API"""
@@ -50,11 +52,10 @@ def format_definition(data: list | None) -> str:
     return result
 
 def list_of_deals():
-    currency_url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json"
     deals_url = "https://www.cheapshark.com/api/1.0/deals?storeID=1,25&upperPrice=10"
     store_url = "https://www.cheapshark.com/api/1.0/stores"
 
-    currency_r = requests.request("GET", currency_url)
+    currency_r = requests.request("GET", currency_u)
     currency_o = currency_r.json()
     ##print(json.dumps(currency_o, indent=2))
     ##print([key for key in currency_o.keys()])
@@ -96,6 +97,30 @@ def list_of_deals():
         result += "-----------------------------\n"
         return result
 
+def freeGames(number: int):
+    games_u = "https://www.freetogame.com/api/games"
+    games_r = requests.request("GET", games_u)
+    games_o = games_r.json()
+
+
+    for i in range(0, number):
+        entry = games_o[i]
+        ##print(entry)
+        gameName = entry.get("title")
+        genre = entry.get("genre")
+        platform = entry.get("platform")
+        publisher = entry.get("publisher")
+        release = entry.get("release_date")
+
+        result = f"Game name: {gameName}\n"
+        result += f"Genre: {genre}\n"
+        result += f"Platform(s): {platform}\n"
+        result += f"Publisher: {publisher}\n"
+        result += f"Release date: {release}\n"
+        result += "------------------\n"
+
+        return result
+
 @mcp.tool()
 async def getDefinition(word: str) -> str:
     """Get definition from Merriam-Webster API"""
@@ -109,6 +134,10 @@ async def getDeals():
     """List game deals below $10 in VND"""
     list_of_deals()
 
+@mcp.tool()
+async def getFreeGames(number):
+    """Free games sorted by name and platform"""
+    freeGames(number)
 
 def main():
     mcp.run(transport="streamable-http")
