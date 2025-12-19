@@ -25,7 +25,7 @@ To get started, you'll need to have Python 3 installed on your system. You'll al
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/your-username/all-in-one-mcp.git
+   git clone https://github.com/NicolasDangg/ielts-dictionary.git
    ```
 2. Install the required packages:
    ```sh
