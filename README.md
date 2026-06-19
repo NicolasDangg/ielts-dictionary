@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/nicolasdangg-ielts-dictionary-badge.png)](https://mseep.ai/app/nicolasdangg-ielts-dictionary)
+
 # All-in-One MCP
 
 This project is an all-in-one MCP (Multi-purpose chatbot) that provides access to a variety of tools, including a dictionary, game deals, and a free games finder.
